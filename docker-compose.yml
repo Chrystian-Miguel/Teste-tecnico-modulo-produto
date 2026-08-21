@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  db:
+    # Imagem oficial do MySQL, usando a versão 8.0
+    image: mysql:8.0
+    container_name: teste-tecnico-modulo-produto
+    # Reinicia o container automaticamente se ele parar
+    restart: always
+    # Variáveis de ambiente para configurar o MySQL
+    environment:
+      MYSQL_DATABASE: 'produtos_db'
+      MYSQL_USER: 'user'
+      MYSQL_PASSWORD: 'password'
+      MYSQL_ROOT_PASSWORD: 'rootpassword'
+    # Mapeia a porta 3306 do container para a porta 3306 da sua máquina local
+    ports:
+      - '3306:3306'
+    # Garante que os dados do banco de dados sejam persistidos em um volume no seu disco
+    # Isso evita a perda de dados quando o container é parado ou recriado.
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+# Define o volume nomeado para persistência dos dados
+volumes:
+  mysql_data:
