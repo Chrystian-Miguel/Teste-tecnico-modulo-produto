@@ -3,10 +3,11 @@ package com.chrystian.testetecnicomoduloproduto.service;
 import com.chrystian.testetecnicomoduloproduto.dto.CreateProductDTO;
 import com.chrystian.testetecnicomoduloproduto.repository.ProductRepository;
 import com.chrystian.testetecnicomoduloproduto.service.impl.ProductServiceImpl;
+import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.TestConstructor;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -20,13 +21,13 @@ import java.util.concurrent.Future;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
+@TestConstructor(autowireMode = TestConstructor.AutowireMode.ALL)
+@RequiredArgsConstructor
 class ProductCreationConcurrencyTest {
 
-    @Autowired
-    private ProductServiceImpl productService;
+    private final ProductServiceImpl productService;
 
-    @Autowired
-    private ProductRepository productRepository;
+    private final ProductRepository productRepository;
 
     private String productName;
 
