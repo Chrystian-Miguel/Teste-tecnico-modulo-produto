@@ -117,7 +117,7 @@ public class ProductService implements IProductService {
     public void delete(String id) {
         log.info("Deletando produto com ID: {}", id);
         // Verifica se o produto existe
-        Product product = getProductOrThrow(id);
+        Product product = getProductForUpdateOrThrow(id);
         productRepository.delete(product);
 
         logSuccess("DELETAR", id, "Produto removido com sucesso");
@@ -133,7 +133,7 @@ public class ProductService implements IProductService {
         validateSaleQuantity(dto.getQuantity());
 
         // 2. Buscar produto
-        Product product = getProductOrThrow(id);
+        Product product = getProductForUpdateOrThrow(id);
 
         // 3. Verificar estoque
         checkStockAvailability(product);
@@ -163,7 +163,7 @@ public class ProductService implements IProductService {
         validateRestockQuantity(dto.getQuantity());
 
         // 2. Buscar produto
-        Product product = getProductOrThrow(id);
+        Product product = getProductForUpdateOrThrow(id);
 
         // 3. Calcular nova quantidade
         Integer newQuantity = calculateNewQuantityAfterRestock(product, dto.getQuantity());
@@ -184,6 +184,15 @@ public class ProductService implements IProductService {
     private Product getProductOrThrow(String id) {
         log.debug("Buscando produto com ID: {}", id);
         return productRepository.findById(id)
+                .orElseThrow(() -> {
+                    log.error("Produto não encontrado com ID: {}", id);
+                    return new ProductNotFoundException("Produto não encontrado com ID: " + id);
+                });
+    }
+
+    private Product getProductForUpdateOrThrow(String id) {
+        log.debug("Buscando produto com lock para atualização: {}", id);
+        return productRepository.findByIdForUpdate(id)
                 .orElseThrow(() -> {
                     log.error("Produto não encontrado com ID: {}", id);
                     return new ProductNotFoundException("Produto não encontrado com ID: " + id);

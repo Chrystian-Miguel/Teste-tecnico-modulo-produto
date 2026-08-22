@@ -1,0 +1,48 @@
+<section class="page-intro">
+  <div>
+    <p class="eyebrow">OPERAÇÃO / ESTOQUE CENTRAL</p>
+    <h1>Movimente seu estoque.</h1>
+    <p class="subtitle">Registre vendas e reposições com controle sobre cada quantidade.</p>
+  </div><a class="secondary-button" routerLink="/produtos">Ver catalogo</a>
+</section>
+@if (message()) { <div class="feedback success" role="status">{{ message() }}</div> } @if (error()) { <div
+  class="modal-backdrop" role="presentation">
+  <section class="error-modal" role="alertdialog" aria-modal="true" aria-labelledby="error-title"><span
+      class="modal-icon">!</span>
+    <h2 id="error-title">Nao foi possivel concluir</h2>
+    <p>{{ error() }}</p><button type="button" class="primary-button" (click)="dismissError()">Fechar</button>
+  </section>
+</div> }
+@if (loading()) { <div class="empty-state"><span class="loader"></span>
+  <p>Carregando produtos...</p>
+</div> } @else { <section class="operations-layout">
+  <div class="operation-card">
+    <div class="operation-heading"><span class="form-kicker">NOVA MOVIMENTACAO</span>
+      <h2>Atualizar estoque</h2>
+      <p>Use um unico formulario para registrar vendas ou reposicoes.</p>
+    </div>
+    <form (ngSubmit)="submit()"><label>Tipo de movimentacao<select name="operation" [(ngModel)]="operation">
+          <option value="sale">Registrar venda</option>
+          <option value="restock">Repor estoque</option>
+        </select></label><label>Buscar produto<div class="product-picker"><input name="productSearch"
+            [(ngModel)]="productSearch" placeholder="Digite para filtrar os produtos" autocomplete="off"
+            aria-label="Buscar produto">
+          <div class="product-options">@for (product of filteredProducts; track product.id) { <button type="button"
+              [class.selected]="selectedId === product.id" (click)="selectProduct(product)">{{ product.name }} <small>{{
+                product.quantity }} un.</small></button> } @empty { <span class="no-products">Nenhum produto
+              encontrado.</span> }</div>
+        </div></label>@if (selectedProduct) { <div class="selected-product">Produto selecionado: <strong>{{
+          selectedProduct.name }}</strong></div> }<label>Quantidade<input name="quantity" [(ngModel)]="quantity"
+          type="number" min="1" step="1" required></label>@if (operation === 'sale' && selectedProduct) { <div
+        class="sale-total"><span>Valor da venda</span><strong>{{ saleTotal | currency: 'BRL' }}</strong></div> }<button
+        class="primary-button full" type="submit" [disabled]="processing() || !selectedProduct">{{ processing() ?
+        'Processando...' : (operation === 'sale' ? 'Confirmar venda' : 'Confirmar reposicao') }}</button></form>
+  </div>
+  <aside class="operation-summary"><span class="form-kicker">PRODUTO SELECIONADO</span>@if (selectedProduct) { <div
+      class="summary-symbol">{{ selectedProduct.name.charAt(0).toUpperCase() }}</div>
+    <h2>{{ selectedProduct.name }}</h2>
+    <p>{{ selectedProduct.description }}</p>
+    <div class="summary-stock"><span>Estoque atual</span><strong [class.low]="selectedProduct.quantity <= 5">{{
+        selectedProduct.quantity }} <small>unidades</small></strong></div> } @else { <p>Nenhum produto cadastrado.</p> }
+  </aside>
+</section> }

@@ -1,0 +1,253 @@
+.operations-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(300px, .8fr);
+  gap: 28px;
+  align-items: start;
+}
+
+.operation-card,
+.operation-summary {
+  background: #fff;
+  border: 1px solid #dce5df;
+  padding: 32px;
+}
+
+.operation-heading h2,
+.operation-summary h2 {
+  font: 700 1.65rem Georgia;
+  margin: 0;
+}
+
+.operation-heading p,
+.operation-summary p {
+  color: #82908a;
+  font-size: .85rem;
+  margin: 8px 0 0;
+}
+
+.segmented {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5px;
+  margin: 30px 0;
+  padding: 5px;
+  background: #eef3ed;
+}
+
+.segmented button {
+  border: 0;
+  background: transparent;
+  padding: 13px 8px;
+  color: #74827b;
+  font: 700 .78rem Georgia;
+  cursor: pointer;
+}
+
+.segmented button.selected {
+  background: #263b36;
+  color: #fff;
+}
+
+.operation-card label {
+  display: block;
+  margin-bottom: 20px;
+  color: #6f7e76;
+  font-size: .72rem;
+  font-weight: 700;
+}
+
+.operation-card input,
+.operation-card select {
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  margin-top: 8px;
+  border: 1px solid #dce5df;
+  padding: 13px;
+  outline: 0;
+  color: #2b3c36;
+  font: .86rem Georgia;
+  background: #fbfcfa;
+}
+
+.operation-card input:focus,
+.operation-card select:focus {
+  border-color: #9eb26d;
+  background: #fff;
+}
+
+.secondary-button {
+  border: 1px solid #b8c8bd;
+  color: #314840;
+  padding: 13px 20px;
+  text-decoration: none;
+  font: 700 .8rem Georgia;
+}
+
+.summary-symbol {
+  width: 58px;
+  height: 58px;
+  display: grid;
+  place-items: center;
+  margin-top: 37px;
+  background: #d8f05f;
+  color: #263b36;
+  font: 700 1.6rem Georgia;
+}
+
+.operation-summary h2 {
+  margin-top: 18px;
+}
+
+.summary-stock {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  border-top: 1px solid #e5ece7;
+  margin-top: 28px;
+  padding-top: 20px;
+  color: #74827b;
+  font-size: .75rem;
+}
+
+.summary-stock strong {
+  color: #263b36;
+  font: 700 2rem Georgia;
+}
+
+.summary-stock strong.low {
+  color: #b06d3e;
+}
+
+.summary-stock small {
+  font: .72rem 'DM Mono', monospace;
+  color: #82908a;
+}
+
+.product-picker {
+  position: relative;
+}
+
+.product-options {
+  max-height: 190px;
+  overflow-y: auto;
+  margin-top: 6px;
+  border: 1px solid #dce5df;
+  background: #fff;
+}
+
+.product-options button {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  border: 0;
+  border-bottom: 1px solid #eef2ef;
+  padding: 11px 13px;
+  background: #fff;
+  color: #314840;
+  text-align: left;
+  font: .8rem Georgia;
+  cursor: pointer;
+}
+
+.product-options button:hover,
+.product-options button.selected {
+  background: #eff5d9;
+}
+
+.product-options small {
+  color: #82908a;
+}
+
+.selected-product {
+  margin: -7px 0 20px;
+  color: #82908a;
+  font-size: .72rem;
+}
+
+.selected-product strong {
+  color: #314840;
+}
+
+.sale-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 2px 0 22px;
+  padding: 15px 0;
+  border-top: 1px solid #e5ece7;
+  border-bottom: 1px solid #e5ece7;
+  color: #74827b;
+  font-size: .72rem;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+}
+
+.sale-total strong {
+  color: #263b36;
+  font: 700 1.55rem Georgia;
+  letter-spacing: 0;
+}
+
+.no-products {
+  display: block;
+  padding: 12px 13px;
+  color: #82908a;
+  font-size: .78rem;
+}
+
+.modal-backdrop {
+  position: fixed;
+  z-index: 10;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: rgba(29, 43, 41, .42);
+}
+
+.error-modal {
+  width: min(100%, 430px);
+  padding: 30px;
+  border-top: 4px solid #b54f47;
+  background: #fff;
+  box-shadow: 0 18px 45px rgba(29, 43, 41, .2);
+}
+
+.modal-icon {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  background: #fae8e5;
+  color: #b54f47;
+  font: 700 1.2rem Georgia;
+}
+
+.error-modal h2 {
+  margin: 18px 0 8px;
+  color: #263b36;
+  font: 700 1.25rem Georgia;
+}
+
+.error-modal p {
+  margin: 0 0 24px;
+  color: #687871;
+  font-size: .85rem;
+  line-height: 1.55;
+}
+
+.error-modal .primary-button {
+  min-width: 100px;
+}
+
+@media (max-width: 700px) {
+  .operations-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .operation-card,
+  .operation-summary {
+    padding: 23px 18px;
+  }
+}

@@ -1,0 +1,9 @@
+<main class="shell">
+  <header class="topbar">
+    <a class="brand" routerLink="/produtos"><div class="brand-mark">P</div><div><strong>Prateleira</strong><span>gestao de produtos</span></div></a>
+    <nav class="main-nav" aria-label="Navegacao principal"><a routerLink="/produtos" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Produtos</a><a routerLink="/movimentacoes" routerLinkActive="active">Vendas e reposicao</a></nav>
+    <div class="topbar-meta"><span class="status-dot"></span> Operacao online</div>
+  </header>
+
+  <router-outlet></router-outlet>
+</main>
