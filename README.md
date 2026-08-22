@@ -290,3 +290,5 @@ Principais códigos:
 
 ## Documentação adicional
 ![Imagem do banco de dados](db_diagram.png)
+![Imagem da tela inicial](font1.jpeg)
+![Imagem da tela de venda e estoque](front2.jpeg)
