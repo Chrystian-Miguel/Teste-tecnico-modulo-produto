@@ -17,16 +17,20 @@ public class ProductUtils {
      * Verifica se um produto tem estoque disponível
      */
     public static boolean isInStock(Product product) {
-        return product != null && product.getQuantity() > 0;
+        boolean inStock = product != null && product.getQuantity() > 0;
+        log.debug("Verificando estoque do produto: resultado={}", inStock);
+        return inStock;
     }
 
     /**
      * Verifica se há quantidade suficiente
      */
     public static boolean hasSufficientStock(Product product, Integer requestedQuantity) {
-        return product != null &&
+         boolean sufficient = product != null &&
                product.getQuantity() != null &&
                product.getQuantity() >= requestedQuantity;
+         log.debug("Verificando estoque suficiente: solicitado={}, resultado={}", requestedQuantity, sufficient);
+         return sufficient;
     }
 
     /**
@@ -34,9 +38,12 @@ public class ProductUtils {
      */
     public static BigDecimal calculateTotalPrice(Product product, Integer quantity) {
         if (product == null || product.getPrice() == null || quantity == null) {
+            log.debug("Calculando preço total: dados insuficientes, retornando zero");
             return BigDecimal.ZERO;
         }
-        return product.getPrice().multiply(BigDecimal.valueOf(quantity));
+        BigDecimal totalPrice = product.getPrice().multiply(BigDecimal.valueOf(quantity));
+        log.debug("Preço total calculado: {}", totalPrice);
+        return totalPrice;
     }
 
     /**
@@ -44,22 +51,27 @@ public class ProductUtils {
      */
     public static String formatProductInfo(Product product) {
         if (product == null) {
+            log.debug("Formatando informações do produto nulo");
             return "Product(null)";
         }
-        return String.format(
+        String productInfo = String.format(
                 "Product(id=%s, name=%s, qty=%d, price=%.2f)",
                 product.getId(),
                 product.getName(),
                 product.getQuantity(),
                 product.getPrice()
         );
+            log.debug("Informações do produto formatadas: {}", productInfo);
+            return productInfo;
     }
 
     /**
      * Formata informações de quantidade para log
      */
     public static String formatQuantityInfo(Integer current, Integer previous) {
-        return String.format("Quantidade: %d → %d", previous, current);
+        String quantityInfo = String.format("Quantidade: %d → %d", previous, current);
+        log.debug("Informações de quantidade formatadas: {}", quantityInfo);
+        return quantityInfo;
     }
 
     /**
@@ -67,16 +79,21 @@ public class ProductUtils {
      */
     public static boolean isSameProduct(Product product1, Product product2) {
         if (product1 == null || product2 == null) {
+            log.debug("Comparando produtos: um ou ambos são nulos");
             return false;
         }
-        return product1.getId().equals(product2.getId());
+        boolean sameProduct = product1.getId().equals(product2.getId());
+        log.debug("Comparando produtos por ID: resultado={}", sameProduct);
+        return sameProduct;
     }
 
     /**
      * Verifica se o ID é válido (não nulo e não vazio)
      */
     public static boolean isValidId(String id) {
-        return id != null && !id.isBlank() && id.length() == 36;
+        boolean validId = id != null && !id.isBlank() && id.length() == 36;
+        log.debug("Validando ID do produto: resultado={}", validId);
+        return validId;
     }
 
     /**
@@ -84,9 +101,12 @@ public class ProductUtils {
      */
     public static String formatCurrency(BigDecimal value) {
         if (value == null) {
+            log.debug("Formatando valor monetário nulo");
             return "R$ 0,00";
         }
-        return String.format("R$ %.2f", value);
+        String formattedValue = String.format("R$ %.2f", value);
+        log.debug("Valor monetário formatado: {}", formattedValue);
+        return formattedValue;
     }
 
     /**
@@ -94,9 +114,12 @@ public class ProductUtils {
      */
     public static String getProductSummary(Product product) {
         if (product == null) {
+            log.debug("Obtendo resumo de produto nulo");
             return "Produto não disponível";
         }
-        return String.format("%s (ID: %s)", product.getName(), product.getId().substring(0, 8) + "...");
+        String summary = String.format("%s (ID: %s)", product.getName(), product.getId().substring(0, 8) + "...");
+        log.debug("Resumo do produto obtido: {}", summary);
+        return summary;
     }
 }
 

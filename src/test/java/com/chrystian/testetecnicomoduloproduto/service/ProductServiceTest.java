@@ -11,6 +11,7 @@ import com.chrystian.testetecnicomoduloproduto.exception.ProductAlreadyExistsExc
 import com.chrystian.testetecnicomoduloproduto.exception.ProductNotFoundException;
 import com.chrystian.testetecnicomoduloproduto.model.Product;
 import com.chrystian.testetecnicomoduloproduto.repository.ProductRepository;
+import com.chrystian.testetecnicomoduloproduto.service.impl.ProductServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -35,7 +36,7 @@ class ProductServiceTest {
     private ProductRepository productRepository;
 
     @InjectMocks
-    private ProductService productService;
+    private ProductServiceImpl productService;
 
     @Test
     void shouldCreateProductWithGeneratedId() {

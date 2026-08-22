@@ -3,7 +3,7 @@ package com.chrystian.testetecnicomoduloproduto.controller;
 import com.chrystian.testetecnicomoduloproduto.dto.ProductResponseDTO;
 import com.chrystian.testetecnicomoduloproduto.exception.GlobalExceptionHandler;
 import com.chrystian.testetecnicomoduloproduto.exception.InsufficientStockException;
-import com.chrystian.testetecnicomoduloproduto.service.ProductService;
+import com.chrystian.testetecnicomoduloproduto.service.impl.ProductServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -28,7 +28,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 class ProductControllerTest {
 
     @Mock
-    private ProductService productService;
+    private ProductServiceImpl productService;
 
     private MockMvc mockMvc;
 

@@ -4,6 +4,7 @@ import com.chrystian.testetecnicomoduloproduto.dto.SaleDTO;
 import com.chrystian.testetecnicomoduloproduto.exception.InsufficientStockException;
 import com.chrystian.testetecnicomoduloproduto.model.Product;
 import com.chrystian.testetecnicomoduloproduto.repository.ProductRepository;
+import com.chrystian.testetecnicomoduloproduto.service.impl.ProductServiceImpl;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class ProductServiceConcurrencyTest {
 
     @Autowired
-    private ProductService productService;
+    private ProductServiceImpl productService;
 
     @Autowired
     private ProductRepository productRepository;

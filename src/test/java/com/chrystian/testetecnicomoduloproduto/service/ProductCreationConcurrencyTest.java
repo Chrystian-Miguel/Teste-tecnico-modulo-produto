@@ -1,9 +1,8 @@
 package com.chrystian.testetecnicomoduloproduto.service;
 
 import com.chrystian.testetecnicomoduloproduto.dto.CreateProductDTO;
-import com.chrystian.testetecnicomoduloproduto.dto.ProductResponseDTO;
-import com.chrystian.testetecnicomoduloproduto.model.Product;
 import com.chrystian.testetecnicomoduloproduto.repository.ProductRepository;
+import com.chrystian.testetecnicomoduloproduto.service.impl.ProductServiceImpl;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +23,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class ProductCreationConcurrencyTest {
 
     @Autowired
-    private ProductService productService;
+    private ProductServiceImpl productService;
 
     @Autowired
     private ProductRepository productRepository;
